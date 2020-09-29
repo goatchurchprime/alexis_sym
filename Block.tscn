@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.882353, 0.972549, 0.0980392, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+resource_local_to_scene = true
+material = SubResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="CylinderMesh" id=3]
+resource_local_to_scene = true
+top_radius = 0.6
+bottom_radius = 0.4
+height = 1.0
+
+[sub_resource type="OpenSimplexNoise" id=4]
+octaves = 1
+period = 23.7
+persistence = 0.404
+lacunarity = 1.69
+
+[sub_resource type="NoiseTexture" id=5]
+seamless = true
+noise = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=6]
+resource_local_to_scene = true
+albedo_color = Color( 0.101961, 0.968627, 0.929412, 1 )
+albedo_texture = SubResource( 5 )
+
+[node name="Block" type="Spatial"]
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+mesh = SubResource( 2 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="CSGMesh"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.273816, 0.5, 0.0995056 )
+operation = 2
+mesh = SubResource( 3 )
+material = SubResource( 6 )

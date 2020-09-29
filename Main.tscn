@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Model.gd" type="Script" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.933333, 0.690196, 0.976471, 1 )
+metallic = 0.7
+metallic_texture = SubResource( 2 )
+roughness = 0.0
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
+size = Vector3( 2, 1, 2 )
+
+[node name="Main" type="Spatial"]
+
+[node name="Model" type="Spatial" parent="."]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Model"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74509, 3.13045, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.858074, 0.263078, -0.44102, 0, 0.858808, 0.512298, 0.513526, -0.439589, 0.736921, -1.1893, 1.27683, 2.31141 )
