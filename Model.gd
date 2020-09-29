@@ -20,7 +20,14 @@ func _ready():
 		block.get_node("CSGMesh").mesh.surface_set_material(0, uniquematerial) 
 		add_child(block)
 
+var spinning = true
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotation_degrees.z += delta*9
-	rotation_degrees.x += delta*13
+	if spinning:
+		rotation_degrees.z += delta*9
+		rotation_degrees.x += delta*13
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.scancode == KEY_P:
+		spinning = not spinning
